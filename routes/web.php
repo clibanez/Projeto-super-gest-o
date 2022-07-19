@@ -24,14 +24,18 @@ Route::get('/', function () {
 Route::get('/',[PrincipalController::class,'principal'])->name('site.index');
 Route::get('/sobre-nos',[SobreNosController::class,'sobreNos'])->name('site.sobrenos');
 Route::get('/contato',[ContatoController::class,'contato'])->name('site.contato');
+Route::post('/contato',[ContatoController::class,'contato'])->name('site.contato');
 Route::get('/login',[ContatoController::class,'contato'])->name('site.login');
 
 Route::prefix('/app')->group(function(){
 Route::get('/clientes',[ContatoController::class,'contato'])->name('app.cliente');
-Route::get('/fornecedores',[ContatoController::class,'contato'])->name('app.fornecedores');
+Route::get('/fornecedores',[FornecedorController::class,'index'])->name('app.fornecedores');
 Route::get('/produtos',[ContatoController::class,'contato'])->name('app.produtos');
 });
 
 //Rota fallback
-Route::fallback(function() { echo 'A rota acessada Não existe. <a href="'.route('site.index').'">Clique Aqui</a> para ir para página principal';
+Route::fallback(function() {
+    echo 'A rota acessada Não existe. <a href="'.route('site.index').'">Clique Aqui</a> para ir para página principal';
 });
+
+
